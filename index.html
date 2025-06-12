@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>油尖旺體育會 | Yau Tsim Mong Sports Association</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button id="lang-zh" class="lang-btn active">中文</button>
+        <button id="lang-en" class="lang-btn">English</button>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="logo.png" alt="Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1 class="zh-content">油尖旺體育會</h1>
+                    <h1 class="en-content" style="display: none;">Yau Tsim Mong Sports Association</h1>
+                </div>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active" data-tab="home">
+                        <span class="zh-content">主頁</span>
+                        <span class="en-content" style="display: none;">Home</span>
+                    </a></li>
+                    <li><a href="#about" class="nav-link" data-tab="about">
+                        <span class="zh-content">簡介</span>
+                        <span class="en-content" style="display: none;">About</span>
+                    </a></li>
+                    <li><a href="#structure" class="nav-link" data-tab="structure">
+                        <span class="zh-content">架構</span>
+                        <span class="en-content" style="display: none;">Structure</span>
+                    </a></li>
+                    <li><a href="#membership" class="nav-link" data-tab="membership">
+                        <span class="zh-content">會員及設施</span>
+                        <span class="en-content" style="display: none;">Membership & Facilities</span>
+                    </a></li>
+                    <li><a href="#events" class="nav-link" data-tab="events">
+                        <span class="zh-content">大型活動</span>
+                        <span class="en-content" style="display: none;">Major Events</span>
+                    </a></li>
+                    <li><a href="#training" class="nav-link" data-tab="training">
+                        <span class="zh-content">訓練班</span>
+                        <span class="en-content" style="display: none;">Training Classes</span>
+                    </a></li>
+                    <li><a href="#teams" class="nav-link" data-tab="teams">
+                        <span class="zh-content">代表隊</span>
+                        <span class="en-content" style="display: none;">Representative Teams</span>
+                    </a></li>
+                    <li><a href="#gallery" class="nav-link" data-tab="gallery">
+                        <span class="zh-content">相片集</span>
+                        <span class="en-content" style="display: none;">Photo Gallery</span>
+                    </a></li>
+                    <li><a href="#contact" class="nav-link" data-tab="contact">
+                        <span class="zh-content">聯絡我們</span>
+                        <span class="en-content" style="display: none;">Contact Us</span>
+                    </a></li>
+                    <li><a href="#links" class="nav-link" data-tab="links">
+                        <span class="zh-content">相關連結</span>
+                        <span class="en-content" style="display: none;">Related Links</span>
+                    </a></li>
+                </ul>
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h2 class="zh-content">歡迎來到油尖旺體育會</h2>
+                    <h2 class="en-content" style="display: none;">Welcome to Yau Tsim Mong Sports Association</h2>
+                    <p class="zh-content">致力推廣體育運動，促進社區健康發展</p>
+                    <p class="en-content" style="display: none;">Dedicated to promoting sports and fostering community health development</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary">
+                            <span class="zh-content">了解更多</span>
+                            <span class="en-content" style="display: none;">Learn More</span>
+                        </button>
+                        <button class="btn btn-secondary">
+                            <span class="zh-content">加入我們</span>
+                            <span class="en-content" style="display: none;">Join Us</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container">
+                <div class="features">
+                    <div class="feature-card">
+                        <i class="fas fa-users"></i>
+                        <h3 class="zh-content">專業團隊</h3>
+                        <h3 class="en-content" style="display: none;">Professional Team</h3>
+                        <p class="zh-content">經驗豐富的教練團隊，提供專業指導</p>
+                        <p class="en-content" style="display: none;">Experienced coaching team providing professional guidance</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-dumbbell"></i>
+                        <h3 class="zh-content">完善設施</h3>
+                        <h3 class="en-content" style="display: none;">Complete Facilities</h3>
+                        <p class="zh-content">現代化的體育設施，滿足各項運動需求</p>
+                        <p class="en-content" style="display: none;">Modern sports facilities meeting various athletic needs</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-trophy"></i>
+                        <h3 class="zh-content">卓越成績</h3>
+                        <h3 class="en-content" style="display: none;">Outstanding Achievements</h3>
+                        <p class="zh-content">多年來在各項比賽中取得優異成績</p>
+                        <p class="en-content" style="display: none;">Excellent results in various competitions over the years</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="zh-content">關於我們</span>
+                    <span class="en-content" style="display: none;">About Us</span>
+                </h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <div class="zh-content">
+                            <p>油尖旺體育會成立於1985年，是香港一個致力於推廣體育運動的非牟利組織。我們的使命是透過體育活動促進社區健康，培養青少年的體育精神和團隊合作能力。</p>
+                            <p>多年來，我們一直秉承「健康、團結、進步」的宗旨，為油尖旺區居民提供優質的體育服務。我們的活動範圍涵蓋多個體育項目，包括足球、籃球、羽毛球、乒乓球、游泳等。</p>
+                            <p>我們相信體育運動不僅能強身健體，更能培養品格，建立友誼，促進社區和諧。歡迎各界人士加入我們的大家庭！</p>
+                        </div>
+                        <div class="en-content" style="display: none;">
+                            <p>Yau Tsim Mong Sports Association was established in 1985 as a non-profit organization dedicated to promoting sports in Hong Kong. Our mission is to foster community health through sports activities and cultivate sportsmanship and teamwork among young people.</p>
+                            <p>Over the years, we have adhered to our motto of "Health, Unity, Progress," providing quality sports services to residents of the Yau Tsim Mong district. Our activities cover various sports including football, basketball, badminton, table tennis, swimming, and more.</p>
+                            <p>We believe that sports not only strengthen the body but also build character, forge friendships, and promote community harmony. We welcome people from all walks of life to join our big family!</p>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <img src="about-image.jpg" alt="About Us">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Structure Section -->
+        <section id="structure" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="zh-content">組織架構</span>
+                    <span class="en-content" style="display: none;">Organizational Structure</span>
+                </h2>
+                <div class="structure-chart">
+                    <div class="structure-level">
+                        <div class="structure-box president">
+                            <h3 class="zh-content">會長</h3>
+                            <h3 class="en-content" style="display: none;">President</h3>
+                            <p class="zh-content">陳大文先生</p>
+                            <p class="en-content" style="display: none;">Mr. Chan Tai Man</p>
+                        </div>
+                    </div>
+                    <div class="structure-level">
+                        <div class="structure-box">
+                            <h3 class="zh-content">副會長</h3>
+                            <h3 class="en-content" style="display: none;">Vice President</h3>
+                            <p class="zh-content">李小明先生</p>
+                            <p class="en-content" style="display: none;">Mr. Lee Siu Ming</p>
+                        </div>
+                        <div class="structure-box">
+                            <h3 class="zh-content">秘書長</h3>
+                            <h3 class="en-content" style="display: none;">Secretary General</h3>
+                            <p class="zh-content">王美華女士</p>
+                            <p class="en-content" style="display: none;">Ms. Wong Mei Wah</p>
+                        </div>
+                        <div class="structure-box">
+                            <h3 class="zh-content">財政</h3>
+                            <h3 class="en-content" style="display: none;">Treasurer</h3>
+                            <p class="zh-content">張志強先生</p>
+                            <p class="en-content" style="display: none;">Mr. Cheung Chi Keung</p>
+                        </div>
+                    </div>
+                    <div class="structure-level">
+                        <div class="structure-box">
+                            <h3 class="zh-content">技術總監</h3>
+                            <h3 class="en-content" style="display: none;">Technical Director</h3>
+                        </div>
+                        <div class="structure-box">
+                            <h3 class="zh-content">活動統籌</h3>
+                            <h3 class="en-content" style="display: none;">Event Coordinator</h3>
+                        </div>
+                        <div class="structure-box">
+                            <h3 class="zh-content">公關主任</h3>
+                            <h3 class="en-content" style="display: none;">Public Relations Officer</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Membership & Facilities Section -->
+        <section id="membership" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="zh-content">會員及設施</span>
+                    <span class="en-content" style="display: none;">Membership & Facilities</span>
+                </h2>
+                <div class="membership-content">
+                    <div class="membership-info">
+                        <h3 class="zh-content">會員類別</h3>
+                        <h3 class="en-content" style="display: none;">Membership Categories</h3>
+                        <div class="membership-types">
+                            <div class="membership-card">
+                                <h4 class="zh-content">普通會員</h4>
+                                <h4 class="en-content" style="display: none;">Regular Member</h4>
+                                <p class="zh-content">年費：$200</p>
+                                <p class="en-content" style="display: none;">Annual Fee: $200</p>
+                                <ul class="zh-content">
+                                    <li>參與所有體育活動</li>
+                                    <li>使用基本設施</li>
+                                    <li>參加訓練班優惠</li>
+                                </ul>
+                                <ul class="en-content" style="display: none;">
+                                    <li>Participate in all sports activities</li>
+                                    <li>Access to basic facilities</li>
+                                    <li>Training class discounts</li>
+                                </ul>
+                            </div>
+                            <div class="membership-card premium">
+                                <h4 class="zh-content">高級會員</h4>
+                                <h4 class="en-content" style="display: none;">Premium Member</h4>
+                                <p class="zh-content">年費：$500</p>
+                                <p class="en-content" style="display: none;">Annual Fee: $500</p>
+                                <ul class="zh-content">
+                                    <li>所有普通會員權益</li>
+                                    <li>優先預訂設施</li>
+                                    <li>免費參加指定活動</li>
+                                    <li>專屬儲物櫃</li>
+                                </ul>
+                                <ul class="en-content" style="display: none;">
+                                    <li>All regular member benefits</li>
+                                    <li>Priority facility booking</li>
+                                    <li>Free designated activities</li>
+                                    <li>Exclusive lockers</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="facilities-info">
+                        <h3 class="zh-content">設施介紹</h3>
+                        <h3 class="en-content" style="display: none;">Facilities</h3>
+                        <div class="facilities-grid">
+                            <div class="facility-item">
+                                <i class="fas fa-futbol"></i>
+                                <h4 class="zh-content">足球場</h4>
+                                <h4 class="en-content" style="display: none;">Football Field</h4>
+                                <p class="zh-content">標準11人制足球場</p>
+                                <p class="en-content" style="display: none;">Standard 11-a-side football field</p>
+                            </div>
+                            <div class="facility-item">
+                                <i class="fas fa-basketball-ball"></i>
+                                <h4 class="zh-content">籃球場</h4>
+                                <h4 class="en-content" style="display: none;">Basketball Court</h4>
+                                <p class="zh-content">室內外籃球場各2個</p>
+                                <p class="en-content" style="display: none;">2 indoor and 2 outdoor courts</p>
+                            </div>
+                            <div class="facility-item">
+                                <i class="fas fa-swimmer"></i>
+                                <h4 class="zh-content">游泳池</h4>
+                                <h4 class="en-content" style="display: none;">Swimming Pool</h4>
+                                <p class="zh-content">25米標準泳池</p>
+                                <p class="en-content" style="display: none;">25-meter standard pool</p>
+                            </div>
+                            <div class="facility-item">
+                                <i class="fas fa-table-tennis"></i>
+                                <h4 class="zh-content">乒乓球室</h4>
+                                <h4 class="en-content" style="display: none;">Table Tennis Room</h4>
+                                <p class="zh-content">8張專業球檯</p>
+                                <p class="en-content" style="display: none;">8 professional tables</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Major Events Section -->
+        <section id="events" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="zh-content">大型活動</span>
+                    <span class="en-content" style="display: none;">Major Events</span>
+                </h2>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-image">
+                            <img src="event1.jpg" alt="Annual Sports Day">
+                        </div>
+                        <div class="event-content">
+                            <h3 class="zh-content">年度運動會</h3>
+                            <h3 class="en-content" style="display: none;">Annual Sports Day</h3>
+                            <p class="event-date">2024年4月15日 | April 15, 2024</p>
+                            <p class="zh-content">一年一度的盛大運動會，匯聚各項體育競技，促進會員間的友誼與交流。</p>
+                            <p class="en-content" style="display: none;">Annual grand sports event bringing together various athletic competitions to foster friendship and exchange among members.</p>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-image">
+                            <img src="event2.jpg" alt="Summer Swimming Gala">
+                        </div>
+                        <div class="event-content">
+                            <h3 class="zh-content">夏日游泳嘉年華</h3>
+                            <h3 class="en-content" style="display: none;">Summer Swimming Gala</h3>
+                            <p class="event-date">2024年7月20日 | July 20, 2024</p>
+                            <p class="zh-content">夏日清涼游泳比賽，適合全家參與的水上運動盛會。</p>
+                            <p class="en-content" style="display: none;">Cool summer swimming competition, a water sports festival suitable for the whole family.</p>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-image">
+                            <img src="event3.jpg" alt="Charity Marathon">
+                        </div>
+                        <div class="event-content">
+                            <h3 class="zh-content">慈善馬拉松</h3>
+                            <h3 class="en-content" style="display: none;">Charity Marathon</h3>
+                            <p class="event-date">2024年10月8日 | October 8, 2024</p>
+                            <p class="zh-content">結合運動與慈善的馬拉松活動，為社區貢獻一份力量。</p>
+                            <p class="en-content" style="display: none;">Marathon event combining sports and charity, contributing to the community.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Training Classes Section -->
+        <section id="training" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="zh-content">訓練班</span>
+                    <span class="en-content" style="display: none;">Training Classes</span>
+                </h2>
+                <div class="training-categories">
+                    <div class="training-category">
+                        <h3 class="zh-content">兒童班 (6-12歲)</h3>
+                        <h3 class="en-content" style="display: none;">Children's Classes (Ages 6-12)</h3>
+                        <div class="training-classes">
+                            <div class="training-class">
+                                <h4 class="zh-content">小小足球員</h4>
+                                <h4 class="en-content" style="display: none;">Little Footballers</h4>
+                                <p class="zh-content">每週六 10:00-11:30 | 月費：$300</p>
+                                <p class="en-content" style="display: none;">Saturdays 10:00-11:30 | Monthly Fee: $300</p>
+                            </div>
+                            <div class="training-class">
+                                <h4 class="zh-content">游泳基礎班</h4>
+                                <h4 class="en-content" style="display: none;">Basic Swimming</h4>
+                                <p class="zh-content">每週日 9:00-10:00 | 月費：$400</p>
+                                <p class="en-content" style="display: none;">Sundays 9:00-10:00 | Monthly Fee: $400</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="training-category">
+                        <h3 class="zh-content">青少年班 (13-17歲)</h3>
+                        <h3 class="en-content" style="display: none;">Youth Classes (Ages 13-17)</h3>
+                        <div class="training-classes">
+                            <div class="training-class">
+                                <h4 class="zh-content">籃球技巧提升</h4>
+                                <h4 class="en-content" style="display: none;">Basketball Skills Enhancement</h4>
+                                <p class="zh-content">每週三、五 18:00-19:30 | 月費：$500</p>
+                                <p class="en-content" style="display: none;">Wed & Fri 18:00-19:30 | Monthly Fee: $500</p>
+                            </div>
+                            <div class="training-class">
+                                <h4 class="zh-content">羽毛球進階班</h4>
+                                <h4 class="en-content" style="display: none;">Advanced Badminton</h4>
+                                <p class="zh-content">每週二、四 19:00-20:30 | 月費：$450</p>
+                                <p class="en-content" style="display: none;">Tue & Thu 19:00-20:30 | Monthly Fee: $450</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="training-category">
+                        <h3 class="zh-content">成人班 (18歲以上)</h3>
+                        <h3 class="en-content" style="display: none;">Adult Classes (18+)</h3>
+                        <div class="training-classes">
+                            <div class="training-class">
+                                <h4 class="zh-content">健身訓練</h4>
+                                <h4 class="en-content" style="display: none;">Fitness Training</h4>
+                                <p class="zh-content">每週一、三、五 20:00-21:00 | 月費：$600</p>
+                                <p class="en-content" style="display: none;">Mon, Wed, Fri 20:00-21:00 | Monthly Fee: $600</p>
+                            </div>
+                            <div class="training-class">
+                                <h4 class="zh-content">太極班</h4>
+                                <h4 class="en-content" style="display: none;">Tai Chi Class</h4>
+                                <p class="zh-content">每週六、日 8:00-9:00 | 月費：$350</p>
+                                <p class="en-content" style="display: none;">Sat & Sun 8:00-9:00 | Monthly Fee: $350</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Representative Teams Section -->
+        <section id="teams" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="zh-content">代表隊</span>
+                    <span class="en-content" style="display: none;">Representative Teams</span>
+                </h2>
+                <div class="teams-grid">
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="football-team.jpg" alt="Football Team">
+                        </div>
+                        <div class="team-info">
+                            <h3 class="zh-content">足球隊</h3>
+                            <h3 class="en-content" style="display: none;">Football Team</h3>
+                            <p class="zh-content">成立於1990年，多次獲得地區聯賽冠軍</p>
+                            <p class="en-content" style="display: none;">Established in 1990, multiple district league champions</p>
+                            <div class="team-achievements">
+                                <span class="achievement">2023年地區聯賽冠軍</span>
+                                <span class="achievement">2022年友誼賽亞軍</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="basketball-team.jpg" alt="Basketball Team">
+                        </div>
+                        <div class="team-info">
+                            <h3 class="zh-content">籃球隊</h3>
+                            <h3 class="en-content" style="display: none;">Basketball Team</h3>
+                            <p class="zh-content">年輕有活力的隊伍，積極參與各項比賽</p>
+                            <p class="en-content" style="display: none;">Young and energetic team, actively participating in competitions</p>
+                            <div class="team-achievements">
+                                <span class="achievement">2023年青年組季軍</span>
+                                <span class="achievement">2023年技巧挑戰賽冠軍</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="swimming-team.jpg" alt="Swimming Team">
+                        </div>
+                        <div class="team-info">
+                            <h3 class="zh-content">游泳隊</h3>
+                            <h3 class="en-content" style="display: none;">Swimming Team</h3>
+                            <p class="zh-content">專業訓練，在各項游泳比賽中表現優異</p>
+                            <p class="en-content" style="display: none;">Professional training with excellent performance in swimming competitions</p>
+                            <div class="team-achievements">
+                                <span class="achievement">2023年區際游泳賽金牌</span>
+                                <span class="achievement">2022年接力賽冠軍</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Gallery Section -->
+        <section id="gallery" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="zh-content">相片集</span>
+                    <span class="en-content" style="display: none;">Photo Gallery</span>
+                </h2>
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all">
+                        <span class="zh-content">全部</span>
+                        <span class="en-content" style="display: none;">All</span>
+                    </button>
+                    <button class="filter-btn" data-filter="events">
+                        <span class="zh-content">活動</span>
+                        <span class="en-content" style="display: none;">Events</span>
+                    </button>
+                    <button class="filter-btn" data-filter="training">
+                        <span class="zh-content">訓練</span>
+                        <span class="en-content" style="display: none;">Training</span>
+                    </button>
+                    <button class="filter-btn" data-filter="competitions">
+                        <span class="zh-content">比賽</span>
+                        <span class="en-content" style="display: none;">Competitions</span>
+                    </button>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="events">
+                        <img src="gallery1.jpg" alt="Annual Sports Day">
+                        <div class="gallery-overlay">
+                            <h4 class="zh-content">年度運動會</h4>
+                            <h4 class="en-content" style="display: none;">Annual Sports Day</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="training">
+                        <img src="gallery2.jpg" alt="Swimming Training">
+                        <div class="gallery-overlay">
+                            <h4 class="zh-content">游泳訓練</h4>
+                            <h4 class="en-content" style="display: none;">Swimming Training</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="competitions">
+                        <img src="gallery3.jpg" alt="Football Match">
+                        <div class="gallery-overlay">
+                            <h4 class="zh-content">足球比賽</h4>
+                            <h4 class="en-content" style="display: none;">Football Match</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="events">
+                        <img src="gallery4.jpg" alt="Community Event">
+                        <div class="gallery-overlay">
+                            <h4 class="zh-content">社區活動</h4>
+                            <h4 class="en-content" style="display: none;">Community Event</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="training">
+                        <img src="gallery5.jpg" alt="Basketball Training">
+                        <div class="gallery-overlay">
+                            <h4 class="zh-content">籃球訓練</h4>
+                            <h4 class="en-content" style="display: none;">Basketball Training</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="competitions">
+                        <img src="gallery6.jpg" alt="Swimming Competition">
+                        <div class="gallery-overlay">
+                            <h4 class="zh-content">游泳比賽</h4>
+                            <h4 class="en-content" style="display: none;">Swimming Competition</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="zh-content">聯絡我們</span>
+                    <span class="en-content" style="display: none;">Contact Us</span>
+                </h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h3 class="zh-content">地址</h3>
+                                <h3 class="en-content" style="display: none;">Address</h3>
+                                <p class="zh-content">香港九龍油尖旺區體育館路123號</p>
+                                <p class="en-content" style="display: none;">123 Sports Centre Road, Yau Tsim Mong, Kowloon, Hong Kong</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h3 class="zh-content">電話</h3>
+                                <h3 class="en-content" style="display: none;">Phone</h3>
+                                <p>+852 2345 6789</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h3 class="zh-content">電郵</h3>
+                                <h3 class="en-content" style="display: none;">Email</h3>
+                                <p>info@ytmsports.org.hk</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h3 class="zh-content">開放時間</h3>
+                                <h3 class="en-content" style="display: none;">Opening Hours</h3>
+                                <div class="zh-content">
+                                    <p>星期一至五：9:00 - 22:00</p>
+                                    <p>星期六、日：8:00 - 20:00</p>
+                                </div>
+                                <div class="en-content" style="display: none;">
+                                    <p>Monday - Friday: 9:00 - 22:00</p>
+                                    <p>Saturday - Sunday: 8:00 - 20:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3 class="zh-content">發送訊息</h3>
+                        <h3 class="en-content" style="display: none;">Send Message</h3>
+                        <form>
+                            <div class="form-group">
+                                <input type="text" placeholder="姓名 / Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="電郵 / Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" placeholder="電話 / Phone">
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="訊息內容 / Message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="zh-content">發送</span>
+                                <span class="en-content" style="display: none;">Send</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Links Section -->
+        <section id="links" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="zh-content">相關連結</span>
+                    <span class="en-content" style="display: none;">Related Links</span>
+                </h2>
+                <div class="links-grid">
+                    <div class="links-category">
+                        <h3 class="zh-content">政府部門</h3>
+                        <h3 class="en-content" style="display: none;">Government Departments</h3>
+                        <ul>
+                            <li><a href="https://www.lcsd.gov.hk" target="_blank">
+                                <span class="zh-content">康樂及文化事務署</span>
+                                <span class="en-content" style="display: none;">Leisure and Cultural Services Department</span>
+                            </a></li>
+                            <li><a href="https://www.hab.gov.hk" target="_blank">
+                                <span class="zh-content">民政事務局</span>
+                                <span class="en-content" style="display: none;">Home Affairs Bureau</span>
+                            </a></li>
+                            <li><a href="https://www.ytm.gov.hk" target="_blank">
+                                <span class="zh-content">油尖旺民政事務處</span>
+                                <span class="en-content" style="display: none;">Yau Tsim Mong District Office</span>
+                            </a></li>
+                        </ul>
+                    </div>
+                    <div class="links-category">
+                        <h3 class="zh-content">體育組織</h3>
+                        <h3 class="en-content" style="display: none;">Sports Organizations</h3>
+                        <ul>
+                            <li><a href="https://www.sf.org.hk" target="_blank">
+                                <span class="zh-content">香港體育總會</span>
+                                <span class="en-content" style="display: none;">Sports Federation & Olympic Committee of Hong Kong</span>
+                            </a></li>
+                            <li><a href="https://www.hkfa.com" target="_blank">
+                                <span class="zh-content">香港足球總會</span>
+                                <span class="en-content" style="display: none;">Hong Kong Football Association</span>
+                            </a></li>
+                            <li><a href="https://www.basketball.org.hk" target="_blank">
+                                <span class="zh-content">香港籃球總會</span>
+                                <span class="en-content" style="display: none;">Basketball Association of Hong Kong</span>
+                            </a></li>
+                        </ul>
+                    </div>
+                    <div class="links-category">
+                        <h3 class="zh-content">合作夥伴</h3>
+                        <h3 class="en-content" style="display: none;">Partners</h3>
+                        <ul>
+                            <li><a href="#" target="_blank">
+                                <span class="zh-content">油尖旺區議會</span>
+                                <span class="en-content" style="display: none;">Yau Tsim Mong District Council</span>
+                            </a></li>
+                            <li><a href="#" target="_blank">
+                                <span class="zh-content">社區體育會聯盟</span>
+                                <span class="en-content" style="display: none;">Community Sports Club Alliance</span>
+                            </a></li>
+                            <li><a href="#" target="_blank">
+                                <span class="zh-content">青少年發展基金</span>
+                                <span class="en-content" style="display: none;">Youth Development Foundation</span>
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="zh-content">油尖旺體育會</h3>
+                    <h3 class="en-content" style="display: none;">Yau Tsim Mong Sports Association</h3>
+                    <p class="zh-content">致力推廣體育運動，促進社區健康發展</p>
+                    <p class="en-content" style="display: none;">Dedicated to promoting sports and fostering community health development</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4 class="zh-content">快速連結</h4>
+                    <h4 class="en-content" style="display: none;">Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">
+                            <span class="zh-content">關於我們</span>
+                            <span class="en-content" style="display: none;">About Us</span>
+                        </a></li>
+                        <li><a href="#membership">
+                            <span class="zh-content">會員申請</span>
+                            <span class="en-content" style="display: none;">Membership</span>
+                        </a></li>
+                        <li><a href="#training">
+                            <span class="zh-content">訓練班</span>
+                            <span class="en-content" style="display: none;">Training Classes</span>
+                        </a></li>
+                        <li><a href="#contact">
+                            <span class="zh-content">聯絡我們</span>
+                            <span class="en-content" style="display: none;">Contact Us</span>
+                        </a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="zh-content">聯絡資訊</h4>
+                    <h4 class="en-content" style="display: none;">Contact Info</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 
+                        <span class="zh-content">香港九龍油尖旺區體育館路123號</span>
+                        <span class="en-content" style="display: none;">123 Sports Centre Road, YTM, HK</span>
+                    </p>
+                    <p><i class="fas fa-phone"></i> +852 2345 6789</p>
+                    <p><i class="fas fa-envelope"></i> info@ytmsports.org.hk</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="zh-content">&copy; 2024 油尖旺體育會. 版權所有.</p>
+                <p class="en-content" style="display: none;">&copy; 2024 Yau Tsim Mong Sports Association. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
