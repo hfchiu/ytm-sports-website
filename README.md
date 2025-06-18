@@ -1,155 +1,174 @@
-# Enhanced Funding Rate Arbitrage Strategy
+# Funding Rate Arbitrage Backtest
 
-A sophisticated cryptocurrency arbitrage strategy implementation based on academic research from Alexander et al., Makarov & Schoar, Presto Research, 1Token, and Shu.
+A comprehensive backtest implementation for cryptocurrency funding rate arbitrage strategy using historical funding rate data.
 
 ## 🎯 Strategy Overview
 
-This project implements a **market-neutral funding rate arbitrage strategy** that exploits periodic funding payments in perpetual futures contracts to generate returns while minimizing price risk.
+This backtest implements a **market-neutral funding rate arbitrage strategy** that:
+- Takes long spot + short futures positions when funding rates are positive (collect funding)
+- Takes short spot + long futures positions when funding rates are negative (pay less funding)
+- Minimizes price risk through market-neutral hedging
+- Profits from funding rate collection minus transaction costs
 
-### Key Features
-- 🔄 **Market-Neutral Positions**: Long spot + short futures hedging
-- 📊 **Multi-Exchange Monitoring**: Binance, Bybit, OKX integration
-- 🧠 **Research-Based Parameters**: Academic literature implementation
-- ⚖️ **Risk Management**: Comprehensive position sizing and exit conditions
-- 📈 **Real-Time Analysis**: Live funding rate monitoring and execution
+## 📊 Backtest Features
 
-## 📋 Executive Summary
+### Core Strategy Logic
+- **Entry Threshold**: 0.05% minimum funding rate to initiate trades
+- **Position Sizing**: 90% of capital per trade with 3x leverage
+- **Market Neutral**: Long/short hedged positions to eliminate price risk
+- **Transaction Costs**: Realistic fees including futures, spot, and spread costs
 
-**Current Status**: Strategy implemented and tested, awaiting favorable market conditions.
-
-- **Theoretical Viability**: ✅ Excellent (research-backed methodology)
-- **Current Profitability**: ❌ Low funding rate environment
-- **Implementation Quality**: ✅ Production-ready with comprehensive risk controls
-- **Recommendation**: Monitor and wait for high-volatility periods
-
-[📖 Read Full Executive Summary](EXECUTIVE_SUMMARY.md)
+### Performance Metrics
+- Portfolio value tracking over time
+- Total return and annualized return calculations
+- Funding collection vs transaction cost analysis
+- Win rate and trade execution statistics
+- Risk-adjusted performance metrics
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 ```bash
-pip install -r requirements.txt
-```
-
-### Installation
-```bash
-git clone https://github.com/hfchiu/enhanced-funding-arbitrage.git
-cd enhanced-funding-arbitrage
-pip install -e .
+pip install pandas numpy matplotlib
 ```
 
 ### Usage
+1. Place your funding rate CSV file in the directory
+2. Update the filename in the script if needed
+3. Run the backtest:
+
 ```bash
-python enhanced_funding_arbitrage.py
+python funding_arbitrage_backtest.py
 ```
 
-## 📊 Current Market Analysis
+## 📈 Data Format
 
-| Exchange | BTC/USDT Funding Rate | Status |
-|----------|----------------------|---------|
-| Binance  | -0.000764%          | Monitor |
-| Bybit    | 0.007800%           | Monitor |
-| OKX      | 0.003446%           | Monitor |
+The backtest expects CSV data with the following format:
+```csv
+Time,Contracts,Funding Interval,Funding Rate
+2025-06-18 16:00:00,BTCUSDT Perpetual,8h,0.003694%
+2025-06-18 08:00:00,BTCUSDT Perpetual,8h,-0.001752%
+```
 
-**Cross-Exchange Spread**: 0.008564% (insufficient for profitability)
+## 🏗️ Strategy Parameters
 
-## 🏗️ Architecture
+### Default Settings
+- **Initial Capital**: $10,000
+- **Position Size**: 90% of available capital
+- **Leverage**: 3x
+- **Minimum Funding Threshold**: 0.05%
+- **Transaction Costs**: 0.1% total (futures + spot + spreads)
 
-### Core Components
-- **Enhanced Strategy Engine**: `enhanced_funding_arbitrage.py`
-- **Funding Rate Library**: `funding_rate_arbitrage/`
-- **Multi-Exchange APIs**: CCXT integration
-- **Risk Management**: Position sizing and market regime classification
+### Customizable Parameters
+You can modify these in the `FundingArbitrageBacktest` class:
+- `initial_capital`: Starting capital amount
+- `position_size_pct`: Percentage of capital to use per trade
+- `leverage`: Leverage multiplier
+- `min_funding_threshold`: Minimum funding rate to trigger trades
+- Commission rates for different exchanges
 
-### Strategy Logic
-1. **Monitor** funding rates across exchanges every 8 hours
-2. **Classify** market regimes (high volatility, trending, stable, normal)
-3. **Execute** market-neutral positions when funding > 1% threshold
-4. **Collect** funding fees while hedging price risk
-5. **Exit** when conditions become unfavorable
+## 📊 Output Analysis
 
-## 📈 Performance Metrics
+The backtest provides:
 
-### Historical Backtest (33 days)
-- **Total Return**: 0.00% (no trades executed)
-- **Funding Threshold Met**: Never (rates too low)
-- **Transaction Costs**: 0.18% (futures + spot + spreads)
-- **Required Funding Rate**: >1% for profitability
+### 1. Data Statistics
+- Funding rate distribution and statistics
+- Number of tradeable opportunities
+- Positive vs negative funding periods
 
-### Risk Metrics
-- **Sharpe Ratio**: N/A (no trading activity)
-- **Maximum Drawdown**: 0%
-- **Market Regime Coverage**: 100% classification accuracy
+### 2. Performance Results
+- Initial vs final capital
+- Total return and annualized return
+- Net profit after costs
+- Trade execution count
 
-## 🔬 Research Foundation
+### 3. Visual Analysis
+Four comprehensive charts:
+- Portfolio value over time
+- Funding rates with trading positions
+- Cumulative funding vs transaction costs
+- Portfolio returns timeline
 
-Based on peer-reviewed academic research:
+## 🎯 Strategy Logic
 
-- **Alexander et al.**: Market timing and volatility exploitation
-- **Makarov & Schoar**: Cross-exchange arbitrage opportunities  
-- **Presto Research**: 5-15% annual return targets
-- **1Token**: Leverage optimization (2-5x recommended)
-- **Shu**: Capital efficiency and profit conversion
+### Entry Conditions
+```python
+if funding_rate > min_threshold:
+    # Long spot + Short futures (collect positive funding)
+    position = 1
+    
+elif funding_rate < -min_threshold:
+    # Short spot + Long futures (benefit from negative funding)
+    position = -1
+```
 
-## 💡 Strategic Recommendations
+### Exit Conditions
+```python
+if abs(funding_rate) < min_threshold * 0.5:
+    # Exit when funding rate becomes too low
+    position = 0
+```
 
-### Immediate Actions
-1. **Monitor High-Volatility Events**: Crypto crashes, regulatory announcements
-2. **Optimize Transaction Costs**: Exchange tokens, VIP levels, maker-only orders
-3. **Cross-Exchange Monitoring**: Regional exchanges with capital controls
-4. **Automated Execution**: 8-hour funding cycle precision
-
-### Future Opportunities
-- Market stress events creating funding imbalances
-- New exchange launches with temporary inefficiencies
-- Regulatory changes creating cross-border arbitrage
-
-## 🛠️ Technology Stack
-
-- **Language**: Python 3.11+
-- **APIs**: CCXT (Binance, Bybit, OKX)
-- **Data Analysis**: Pandas, NumPy
-- **Visualization**: Matplotlib
-- **Risk Management**: Custom position sizing algorithms
+### Funding Collection
+```python
+funding_payment = position_size * funding_rate * position_direction
+```
 
 ## 📁 Project Structure
 
 ```
-enhanced-funding-arbitrage/
-├── enhanced_funding_arbitrage.py    # Main strategy implementation
-├── EXECUTIVE_SUMMARY.md             # Comprehensive analysis
-├── funding_rate_arbitrage/          # Core library
-├── enhanced_funding_arbitrage_*.png # Analysis charts
-├── requirements.txt                 # Dependencies
-└── README.md                       # This file
+funding-rate-arbitrage/
+├── funding_arbitrage_backtest.py           # Main backtest script
+├── Funding Rate History_BTCUSDT Perpetual_2025-06-18.csv  # Historical data
+├── funding_arbitrage_backtest_results.png  # Generated charts
+├── funding_rate_arbitrage/                 # Core library
+├── requirements.txt                        # Dependencies
+└── README.md                              # This file
 ```
 
-## ⚠️ Risk Disclaimer
+## ⚠️ Risk Considerations
 
-This strategy involves financial risk and is for educational/research purposes. Key risks include:
+### Strategy Risks
+- **Transaction Costs**: High fees can erode profits from small funding rates
+- **Market Risk**: Price movements during position establishment
+- **Liquidity Risk**: Insufficient liquidity for large positions
+- **Timing Risk**: 8-hour funding cycles require precise execution
 
-- **Market Risk**: Crypto price volatility
-- **Counterparty Risk**: Exchange insolvency
-- **Execution Risk**: Timing and slippage
-- **Regulatory Risk**: Changing regulations
+### Backtest Limitations
+- Historical performance doesn't guarantee future results
+- Assumes perfect execution at funding rate times
+- Doesn't account for slippage or partial fills
+- Market impact costs not included
 
-**Always trade with capital you can afford to lose.**
+## 🔧 Customization
 
-## 🤝 Contributing
+### Adjusting Strategy Parameters
+```python
+# In the __init__ method
+self.min_funding_threshold = 0.005  # 0.5% threshold
+self.leverage = 2.0  # 2x leverage
+self.position_size_pct = 0.8  # 80% position sizing
+```
 
-Contributions welcome! Please read our contributing guidelines and submit pull requests for any improvements.
+### Adding New Metrics
+Extend the `run_backtest()` method to include:
+- Sharpe ratio calculations
+- Maximum drawdown analysis
+- Volatility metrics
+- Risk-adjusted returns
+
+## 📞 Usage Notes
+
+- The backtest uses realistic transaction costs based on major exchanges
+- Funding rates are collected every 8 hours as per perpetual futures standard
+- Market-neutral positions eliminate directional price risk
+- Strategy profitability depends on funding rate volatility vs transaction costs
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
-## 📞 Contact
-
-- **Author**: Eric Chiu
-- **GitHub**: [@hfchiu](https://github.com/hfchiu)
-- **Project**: Enhanced Funding Rate Arbitrage Strategy
+This project is for educational and research purposes. See [LICENSE.md](LICENSE.md) for details.
 
 ---
 
-*Last Updated: December 2024*  
-*Based on 33 days of historical analysis and current market conditions*
+*Backtest implementation for funding rate arbitrage strategy*  
+*Based on historical BTCUSDT perpetual funding rate data*
