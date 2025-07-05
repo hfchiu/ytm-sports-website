@@ -352,6 +352,45 @@ body {
     color: rgba(255,255,255,0.9);
 }
 
+/* Facilities Section */
+.facilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.facility-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.facility-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.facility-card i {
+    font-size: 3rem;
+    color: #2E7D32;
+    margin-bottom: 20px;
+}
+
+.facility-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.facility-card p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
 /* Events Grid */
 .events-grid {
     display: grid;
