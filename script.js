@@ -1,149 +1,148 @@
-// DOM Elements
-const langZhBtn = document.getElementById('lang-zh');
-const langEnBtn = document.getElementById('lang-en');
-const navLinks = document.querySelectorAll('.nav-link');
-const sections = document.querySelectorAll('.section');
-const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-const navList = document.querySelector('.nav-list');
-const galleryFilters = document.querySelectorAll('.filter-btn');
-const galleryItems = document.querySelectorAll('.gallery-item');
-const contactForm = document.querySelector('.contact-form form');
-
-// Language switching functionality
-function switchLanguage(lang) {
-    const zhElements = document.querySelectorAll('.zh-content');
-    const enElements = document.querySelectorAll('.en-content');
+// Language Toggle Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const langZh = document.getElementById('lang-zh');
+    const langEn = document.getElementById('lang-en');
+    const zhContent = document.querySelectorAll('.zh-content');
+    const enContent = document.querySelectorAll('.en-content');
     
-    if (lang === 'zh') {
-        zhElements.forEach(el => el.style.display = 'block');
-        enElements.forEach(el => el.style.display = 'none');
-        langZhBtn.classList.add('active');
-        langEnBtn.classList.remove('active');
-        document.documentElement.lang = 'zh-HK';
-    } else {
-        zhElements.forEach(el => el.style.display = 'none');
-        enElements.forEach(el => el.style.display = 'block');
-        langEnBtn.classList.add('active');
-        langZhBtn.classList.remove('active');
-        document.documentElement.lang = 'en';
-    }
+    // Set initial language
+    let currentLang = 'zh';
     
-    // Save language preference
-    localStorage.setItem('preferred-language', lang);
-}
-
-// Initialize language based on saved preference or default to Chinese
-function initializeLanguage() {
-    const savedLang = localStorage.getItem('preferred-language') || 'zh';
-    switchLanguage(savedLang);
-}
-
-// Navigation functionality
-function showSection(targetId) {
-    // Hide all sections
-    sections.forEach(section => {
-        section.classList.remove('active');
-    });
+    // Language toggle event listeners
+    langZh.addEventListener('click', () => switchLanguage('zh'));
+    langEn.addEventListener('click', () => switchLanguage('en'));
     
-    // Show target section
-    const targetSection = document.getElementById(targetId);
-    if (targetSection) {
-        targetSection.classList.add('active');
-    }
-    
-    // Update active nav link
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-    });
-    
-    const activeLink = document.querySelector(`[data-tab="${targetId}"]`);
-    if (activeLink) {
-        activeLink.classList.add('active');
-    }
-    
-    // Close mobile menu if open
-    navList.classList.remove('mobile-open');
-    mobileMenuToggle.classList.remove('active');
-}
-
-// Gallery filtering functionality
-function filterGallery(filter) {
-    galleryItems.forEach(item => {
-        const category = item.getAttribute('data-category');
-        if (filter === 'all' || category === filter) {
-            item.style.display = 'block';
-            item.style.animation = 'fadeIn 0.5s ease-in-out';
+    function switchLanguage(lang) {
+        currentLang = lang;
+        
+        if (lang === 'zh') {
+            langZh.classList.add('active');
+            langEn.classList.remove('active');
+            
+            zhContent.forEach(el => el.style.display = 'block');
+            enContent.forEach(el => el.style.display = 'none');
         } else {
-            item.style.display = 'none';
+            langEn.classList.add('active');
+            langZh.classList.remove('active');
+            
+            zhContent.forEach(el => el.style.display = 'none');
+            enContent.forEach(el => el.style.display = 'block');
+        }
+    }
+    
+    // Navigation functionality
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.section');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Remove active class from all links
+            navLinks.forEach(l => l.classList.remove('active'));
+            // Add active class to clicked link
+            link.classList.add('active');
+            
+            // Hide all sections
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Show target section
+            const targetId = link.getAttribute('data-tab');
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+    
+    // Mobile menu toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navList = document.querySelector('.nav-list');
+    
+    mobileMenuToggle.addEventListener('click', () => {
+        navList.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking on a link
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navList.classList.remove('active');
+        });
+    });
+    
+    // Scroll to top button
+    const scrollTopBtn = document.createElement('button');
+    scrollTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    scrollTopBtn.className = 'scroll-top';
+    scrollTopBtn.setAttribute('aria-label', 'Scroll to top');
+    document.body.appendChild(scrollTopBtn);
+    
+    // Show/hide scroll to top button
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollTopBtn.classList.add('show');
+        } else {
+            scrollTopBtn.classList.remove('show');
         }
     });
     
-    // Update active filter button
-    galleryFilters.forEach(btn => {
-        btn.classList.remove('active');
+    // Scroll to top functionality
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
     
-    const activeFilter = document.querySelector(`[data-filter="${filter}"]`);
-    if (activeFilter) {
-        activeFilter.classList.add('active');
-    }
-}
-
-// Mobile menu toggle
-function toggleMobileMenu() {
-    navList.classList.toggle('mobile-open');
-    mobileMenuToggle.classList.toggle('active');
-}
-
-// Smooth scrolling for anchor links
-function smoothScroll(target) {
-    const element = document.getElementById(target);
-    if (element) {
-        element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+    // Form submission
+    const contactForm = document.querySelector('.contact-form form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const phone = formData.get('phone');
+            const message = formData.get('message');
+            
+            // Basic validation
+            if (!name || !email || !message) {
+                alert(currentLang === 'zh' ? '請填寫所有必填欄位' : 'Please fill in all required fields');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert(currentLang === 'zh' ? '請輸入有效的電郵地址' : 'Please enter a valid email address');
+                return;
+            }
+            
+            // Success message
+            alert(currentLang === 'zh' ? '訊息已發送，我們會盡快回覆您！' : 'Message sent successfully! We will get back to you soon!');
+            
+            // Reset form
+            contactForm.reset();
         });
     }
-}
-
-// Form submission handler
-function handleFormSubmission(e) {
-    e.preventDefault();
     
-    // Get form data
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
     
-    // Simple validation
-    if (!data.name || !data.email || !data.message) {
-        alert('請填寫所有必填欄位 / Please fill in all required fields');
-        return;
-    }
-    
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email)) {
-        alert('請輸入有效的電郵地址 / Please enter a valid email address');
-        return;
-    }
-    
-    // Simulate form submission
-    const submitBtn = e.target.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 發送中... / Sending...';
-    submitBtn.disabled = true;
-    
-    setTimeout(() => {
-        alert('訊息已發送！我們會盡快回覆您。\nMessage sent! We will reply to you as soon as possible.');
-        e.target.reset();
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-    }, 2000);
-}
-
-// Intersection Observer for animations
-function initializeAnimations() {
+    // Animation on scroll
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -152,256 +151,192 @@ function initializeAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('animate');
             }
         });
     }, observerOptions);
     
-    // Observe elements for animation
-    const animatedElements = document.querySelectorAll('.feature-card, .event-card, .team-card, .membership-card, .facility-item, .training-class, .contact-item, .links-category');
-    
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    // Add animation classes to elements
+    document.querySelectorAll('.feature-card, .event-card, .structure-box').forEach(el => {
+        el.classList.add('fade-in');
         observer.observe(el);
     });
-}
-
-// Initialize hero buttons functionality
-function initializeHeroButtons() {
-    const learnMoreBtn = document.querySelector('.btn-primary');
-    const joinUsBtn = document.querySelector('.btn-secondary');
     
-    if (learnMoreBtn) {
-        learnMoreBtn.addEventListener('click', () => {
-            showSection('about');
-        });
+    // Add slide animations to about section
+    const aboutText = document.querySelector('.about-text');
+    const aboutImage = document.querySelector('.about-image');
+    
+    if (aboutText && aboutImage) {
+        aboutText.classList.add('slide-in-left');
+        aboutImage.classList.add('slide-in-right');
+        observer.observe(aboutText);
+        observer.observe(aboutImage);
     }
     
-    if (joinUsBtn) {
-        joinUsBtn.addEventListener('click', () => {
-            showSection('membership');
-        });
+    // Hero buttons animation
+    const heroButtons = document.querySelectorAll('.hero-buttons .btn');
+    heroButtons.forEach((btn, index) => {
+        btn.style.animationDelay = `${index * 0.2}s`;
+        btn.classList.add('fade-in');
+    });
+    
+    // Add typing effect to hero title
+    const heroTitle = document.querySelector('.hero-content h2');
+    if (heroTitle) {
+        const text = heroTitle.textContent;
+        heroTitle.textContent = '';
+        heroTitle.style.borderRight = '2px solid #ffd700';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < text.length) {
+                heroTitle.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            } else {
+                setTimeout(() => {
+                    heroTitle.style.borderRight = 'none';
+                }, 1000);
+            }
+        };
+        
+        setTimeout(typeWriter, 1000);
     }
-}
-
-// Add CSS for mobile menu
-function addMobileMenuStyles() {
-    const style = document.createElement('style');
-    style.textContent = `
-        @media (max-width: 768px) {
-            .nav-list {
-                position: fixed;
-                top: 80px;
-                right: -100%;
-                width: 80%;
-                max-width: 300px;
-                height: calc(100vh - 80px);
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: stretch;
-                padding: 2rem 0;
-                transition: right 0.3s ease;
-                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
-                z-index: 998;
-            }
-            
-            .nav-list.mobile-open {
-                right: 0;
-            }
-            
-            .nav-list li {
-                margin: 0;
-                width: 100%;
-            }
-            
-            .nav-link {
-                display: block;
-                padding: 1rem 2rem;
-                color: #333 !important;
-                border-radius: 0;
-                border-bottom: 1px solid #eee;
-            }
-            
-            .nav-link:hover,
-            .nav-link.active {
-                background: #007bff;
-                color: white !important;
-                transform: none;
-            }
-            
-            .mobile-menu-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-            
-            .mobile-menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-            
-            .mobile-menu-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -6px);
-            }
-        }
-    `;
-    document.head.appendChild(style);
-}
-
-// Event Listeners
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize language
-    initializeLanguage();
     
-    // Initialize animations
-    initializeAnimations();
-    
-    // Initialize hero buttons
-    initializeHeroButtons();
-    
-    // Add mobile menu styles
-    addMobileMenuStyles();
-    
-    // Language switching
-    langZhBtn.addEventListener('click', () => switchLanguage('zh'));
-    langEnBtn.addEventListener('click', () => switchLanguage('en'));
-    
-    // Navigation
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('data-tab');
-            showSection(targetId);
-            
-            // Update URL hash
-            window.history.pushState(null, null, `#${targetId}`);
+    // Add hover effects to cards
+    document.querySelectorAll('.feature-card, .event-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
         });
     });
     
-    // Mobile menu toggle
-    if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
-    }
-    
-    // Gallery filtering
-    galleryFilters.forEach(filter => {
-        filter.addEventListener('click', () => {
-            const filterValue = filter.getAttribute('data-filter');
-            filterGallery(filterValue);
+    // Add click ripple effect to buttons
+    document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
         });
     });
     
-    // Contact form submission
-    if (contactForm) {
-        contactForm.addEventListener('submit', handleFormSubmission);
-    }
-    
-    // Handle browser back/forward buttons
-    window.addEventListener('popstate', () => {
-        const hash = window.location.hash.substring(1);
-        if (hash) {
-            showSection(hash);
-        } else {
-            showSection('home');
-        }
-    });
-    
-    // Initialize based on URL hash
-    const initialHash = window.location.hash.substring(1);
-    if (initialHash && document.getElementById(initialHash)) {
-        showSection(initialHash);
-    } else {
-        showSection('home');
-    }
-    
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.nav') && navList.classList.contains('mobile-open')) {
-            toggleMobileMenu();
-        }
-    });
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && navList.classList.contains('mobile-open')) {
-            toggleMobileMenu();
-        }
-    });
-    
-    // Add loading class removal after page load
+    // Add loading animation
     window.addEventListener('load', () => {
-        document.body.classList.remove('loading');
+        const loader = document.querySelector('.loader');
+        if (loader) {
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        }
+    });
+    
+    // Add search functionality for events (if needed)
+    const searchInput = document.querySelector('.search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const eventCards = document.querySelectorAll('.event-card');
+            
+            eventCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const content = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || content.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    }
+    
+    // Add print functionality
+    const printBtn = document.querySelector('.print-btn');
+    if (printBtn) {
+        printBtn.addEventListener('click', () => {
+            window.print();
+        });
+    }
+    
+    // Add keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            navList.classList.remove('active');
+        }
+        
+        if (e.key === 'Tab') {
+            document.body.classList.add('keyboard-navigation');
+        }
+    });
+    
+    document.addEventListener('mousedown', () => {
+        document.body.classList.remove('keyboard-navigation');
+    });
+    
+    // Add focus management for accessibility
+    const focusableElements = document.querySelectorAll(
+        'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
+    );
+    
+    focusableElements.forEach(element => {
+        element.addEventListener('focus', function() {
+            this.classList.add('focused');
+        });
+        
+        element.addEventListener('blur', function() {
+            this.classList.remove('focused');
+        });
     });
 });
 
-// Utility functions
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Scroll to top functionality
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-}
-
-// Add scroll to top button
-function addScrollToTopButton() {
-    const scrollBtn = document.createElement('button');
-    scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    scrollBtn.className = 'scroll-to-top';
-    scrollBtn.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
+// Add CSS for ripple effect
+const style = document.createElement('style');
+style.textContent = `
+    .btn {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .ripple {
+        position: absolute;
         border-radius: 50%;
-        background: #007bff;
-        color: white;
-        border: none;
-        cursor: pointer;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 1000;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    `;
+        background: rgba(255, 255, 255, 0.6);
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        pointer-events: none;
+    }
     
-    scrollBtn.addEventListener('click', scrollToTop);
-    document.body.appendChild(scrollBtn);
-    
-    // Show/hide scroll button based on scroll position
-    window.addEventListener('scroll', debounce(() => {
-        if (window.pageYOffset > 300) {
-            scrollBtn.style.opacity = '1';
-            scrollBtn.style.visibility = 'visible';
-        } else {
-            scrollBtn.style.opacity = '0';
-            scrollBtn.style.visibility = 'hidden';
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
         }
-    }, 100));
-}
-
-// Initialize scroll to top button
-document.addEventListener('DOMContentLoaded', addScrollToTopButton);
-
-// Export functions for potential external use
-window.YTMSports = {
-    switchLanguage,
-    showSection,
-    filterGallery,
-    scrollToTop
-}; 
+    }
+    
+    .keyboard-navigation *:focus {
+        outline: 2px solid #667eea;
+        outline-offset: 2px;
+    }
+    
+    .focused {
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+    }
+`;
+document.head.appendChild(style); 

@@ -1,114 +1,174 @@
-# 油尖旺體育會網站 | Yau Tsim Mong Sports Association Website
+# Funding Rate Arbitrage Backtest
 
-## 概述 | Overview
+A comprehensive backtest implementation for cryptocurrency funding rate arbitrage strategy using historical funding rate data.
 
-這是一個為油尖旺體育會設計的現代化、響應式雙語網站。網站包含所有必要的頁面和功能，展示體育會的各項服務和活動。
+## 🎯 Strategy Overview
 
-This is a modern, responsive bilingual website designed for the Yau Tsim Mong Sports Association. The website includes all necessary pages and features to showcase the association's services and activities.
+This backtest implements a **market-neutral funding rate arbitrage strategy** that:
+- Takes long spot + short futures positions when funding rates are positive (collect funding)
+- Takes short spot + long futures positions when funding rates are negative (pay less funding)
+- Minimizes price risk through market-neutral hedging
+- Profits from funding rate collection minus transaction costs
 
-## 功能特色 | Features
+## 📊 Backtest Features
 
-### 🌐 雙語支持 | Bilingual Support
-- 中文（繁體）和英文切換
-- Traditional Chinese and English language switching
-- 語言偏好記憶功能
-- Language preference memory
+### Core Strategy Logic
+- **Entry Threshold**: 0.05% minimum funding rate to initiate trades
+- **Position Sizing**: 90% of capital per trade with 3x leverage
+- **Market Neutral**: Long/short hedged positions to eliminate price risk
+- **Transaction Costs**: Realistic fees including futures, spot, and spread costs
 
-### 📱 響應式設計 | Responsive Design
-- 適配桌面、平板和手機
-- Desktop, tablet, and mobile compatibility
-- 現代化的用戶界面
-- Modern user interface
+### Performance Metrics
+- Portfolio value tracking over time
+- Total return and annualized return calculations
+- Funding collection vs transaction cost analysis
+- Win rate and trade execution statistics
+- Risk-adjusted performance metrics
 
-### 🎯 主要頁面 | Main Pages
-1. **主頁 | Home** - 歡迎頁面和重點介紹
-2. **簡介 | About** - 體育會歷史和使命
-3. **架構 | Structure** - 組織架構圖
-4. **會員及設施 | Membership & Facilities** - 會員類型和設施介紹
-5. **大型活動 | Major Events** - 重要活動展示
-6. **訓練班 | Training Classes** - 各類訓練課程
-7. **代表隊 | Representative Teams** - 體育隊伍介紹
-8. **相片集 | Photo Gallery** - 活動照片展示
-9. **聯絡我們 | Contact Us** - 聯絡資訊和表單
-10. **相關連結 | Related Links** - 外部連結
+## 🚀 Quick Start
 
-### ✨ 互動功能 | Interactive Features
-- 平滑頁面切換動畫
-- Smooth page transition animations
-- 相片集篩選功能
-- Photo gallery filtering
-- 聯絡表單驗證
-- Contact form validation
-- 移動端導航菜單
-- Mobile navigation menu
-- 回到頂部按鈕
-- Scroll to top button
-
-## 文件結構 | File Structure
-
-```
-├── index.html          # 主HTML文件 | Main HTML file
-├── styles.css          # CSS樣式文件 | CSS styles
-├── script.js           # JavaScript功能 | JavaScript functionality
-└── README.md           # 說明文件 | Documentation
+### Prerequisites
+```bash
+pip install pandas numpy matplotlib
 ```
 
-## 使用方法 | Usage
+### Usage
+1. Place your funding rate CSV file in the directory
+2. Update the filename in the script if needed
+3. Run the backtest:
 
-1. 直接在瀏覽器中打開 `index.html` 文件
-   Open `index.html` directly in your browser
+```bash
+python funding_arbitrage_backtest.py
+```
 
-2. 或者使用本地服務器：
-   Or use a local server:
-   ```bash
-   # 使用Python | Using Python
-   python -m http.server 8000
-   
-   # 使用Node.js | Using Node.js
-   npx serve .
-   ```
+## 📈 Data Format
 
-## 自定義 | Customization
+The backtest expects CSV data with the following format:
+```csv
+Time,Contracts,Funding Interval,Funding Rate
+2025-06-18 16:00:00,BTCUSDT Perpetual,8h,0.003694%
+2025-06-18 08:00:00,BTCUSDT Perpetual,8h,-0.001752%
+```
 
-### 更換圖片 | Changing Images
-- 將您的圖片放在相應位置並更新HTML中的圖片路徑
-- Place your images in appropriate locations and update image paths in HTML
+## 🏗️ Strategy Parameters
 
-### 修改內容 | Modifying Content
-- 編輯HTML文件中的中英文內容
-- Edit Chinese and English content in the HTML file
+### Default Settings
+- **Initial Capital**: $10,000
+- **Position Size**: 90% of available capital
+- **Leverage**: 3x
+- **Minimum Funding Threshold**: 0.05%
+- **Transaction Costs**: 0.1% total (futures + spot + spreads)
 
-### 調整樣式 | Adjusting Styles
-- 修改 `styles.css` 文件中的顏色、字體和佈局
-- Modify colors, fonts, and layouts in `styles.css`
+### Customizable Parameters
+You can modify these in the `FundingArbitrageBacktest` class:
+- `initial_capital`: Starting capital amount
+- `position_size_pct`: Percentage of capital to use per trade
+- `leverage`: Leverage multiplier
+- `min_funding_threshold`: Minimum funding rate to trigger trades
+- Commission rates for different exchanges
 
-## 瀏覽器支持 | Browser Support
+## 📊 Output Analysis
 
-- Chrome 60+
-- Firefox 55+
-- Safari 12+
-- Edge 79+
+The backtest provides:
 
-## 技術棧 | Tech Stack
+### 1. Data Statistics
+- Funding rate distribution and statistics
+- Number of tradeable opportunities
+- Positive vs negative funding periods
 
-- **HTML5** - 結構標記 | Structure markup
-- **CSS3** - 樣式和動畫 | Styling and animations
-- **JavaScript (ES6+)** - 互動功能 | Interactive functionality
-- **Font Awesome** - 圖標 | Icons
-- **Google Fonts** - 字體 | Typography
+### 2. Performance Results
+- Initial vs final capital
+- Total return and annualized return
+- Net profit after costs
+- Trade execution count
 
-## 注意事項 | Notes
+### 3. Visual Analysis
+Four comprehensive charts:
+- Portfolio value over time
+- Funding rates with trading positions
+- Cumulative funding vs transaction costs
+- Portfolio returns timeline
 
-1. 網站使用了現代CSS功能，建議使用較新版本的瀏覽器
-   The website uses modern CSS features, newer browsers are recommended
+## 🎯 Strategy Logic
 
-2. 圖片路徑需要根據實際情況調整
-   Image paths need to be adjusted according to actual situation
+### Entry Conditions
+```python
+if funding_rate > min_threshold:
+    # Long spot + Short futures (collect positive funding)
+    position = 1
+    
+elif funding_rate < -min_threshold:
+    # Short spot + Long futures (benefit from negative funding)
+    position = -1
+```
 
-3. 聯絡表單目前為演示功能，需要後端支持才能真正發送郵件
-   Contact form is currently for demonstration, backend support needed for actual email sending
+### Exit Conditions
+```python
+if abs(funding_rate) < min_threshold * 0.5:
+    # Exit when funding rate becomes too low
+    position = 0
+```
 
-## 許可證 | License
+### Funding Collection
+```python
+funding_payment = position_size * funding_rate * position_direction
+```
 
-此項目僅供油尖旺體育會使用。
-This project is for Yau Tsim Mong Sports Association use only. 
+## 📁 Project Structure
+
+```
+funding-rate-arbitrage/
+├── funding_arbitrage_backtest.py           # Main backtest script
+├── Funding Rate History_BTCUSDT Perpetual_2025-06-18.csv  # Historical data
+├── funding_arbitrage_backtest_results.png  # Generated charts
+├── funding_rate_arbitrage/                 # Core library
+├── requirements.txt                        # Dependencies
+└── README.md                              # This file
+```
+
+## ⚠️ Risk Considerations
+
+### Strategy Risks
+- **Transaction Costs**: High fees can erode profits from small funding rates
+- **Market Risk**: Price movements during position establishment
+- **Liquidity Risk**: Insufficient liquidity for large positions
+- **Timing Risk**: 8-hour funding cycles require precise execution
+
+### Backtest Limitations
+- Historical performance doesn't guarantee future results
+- Assumes perfect execution at funding rate times
+- Doesn't account for slippage or partial fills
+- Market impact costs not included
+
+## 🔧 Customization
+
+### Adjusting Strategy Parameters
+```python
+# In the __init__ method
+self.min_funding_threshold = 0.005  # 0.5% threshold
+self.leverage = 2.0  # 2x leverage
+self.position_size_pct = 0.8  # 80% position sizing
+```
+
+### Adding New Metrics
+Extend the `run_backtest()` method to include:
+- Sharpe ratio calculations
+- Maximum drawdown analysis
+- Volatility metrics
+- Risk-adjusted returns
+
+## 📞 Usage Notes
+
+- The backtest uses realistic transaction costs based on major exchanges
+- Funding rates are collected every 8 hours as per perpetual futures standard
+- Market-neutral positions eliminate directional price risk
+- Strategy profitability depends on funding rate volatility vs transaction costs
+
+## 📄 License
+
+This project is for educational and research purposes. See [LICENSE.md](LICENSE.md) for details.
+
+---
+
+*Backtest implementation for funding rate arbitrage strategy*  
+*Based on historical BTCUSDT perpetual funding rate data*
